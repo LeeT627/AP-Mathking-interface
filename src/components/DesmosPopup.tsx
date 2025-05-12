@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
-import { FiX } from 'react-icons/fi';
-import { FaCalculator } from 'react-icons/fa';
+import { FiX, FiActivity } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 
-interface CalculatorPopupProps {
+interface DesmosPopupProps {
   open: boolean;
   onClose: () => void;
 }
@@ -13,11 +12,11 @@ const PopupContainer = styled(motion.div)`
   top: 0;
   left: 0;
   height: 100vh;
-  width: 340px;
+  width: 500px;
   background: #232329;
   color: #fff;
   box-shadow: 2px 0 16px rgba(0,0,0,0.12);
-  z-index: 220;
+  z-index: 225;
   display: flex;
   flex-direction: column;
 `;
@@ -44,33 +43,37 @@ const CloseButton = styled.button`
   }
 `;
 
-const CalculatorImage = styled.img`
-  width: 90%;
-  margin: 32px auto 0 auto;
-  display: block;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+const DesmosFrame = styled.iframe`
+  flex: 1;
+  border: none;
+  width: 100%;
+  min-height: 500px;
+  background: #fff;
 `;
 
-const CalculatorPopup = ({ open, onClose }: CalculatorPopupProps) => (
+const DesmosPopup = ({ open, onClose }: DesmosPopupProps) => (
   <AnimatePresence>
     {open && (
       <PopupContainer
-        initial={{ x: -360 }}
+        initial={{ x: -520 }}
         animate={{ x: 0 }}
-        exit={{ x: -360 }}
+        exit={{ x: -520 }}
         transition={{ duration: 0.25 }}
       >
         <PopupHeader>
-          <span><FaCalculator style={{ marginRight: 8 }} />Calculator</span>
-          <CloseButton onClick={onClose} aria-label="Close calculator">
+          <span><FiActivity style={{ marginRight: 8 }} />Desmos Graphing Calculator</span>
+          <CloseButton onClick={onClose} aria-label="Close desmos">
             <FiX />
           </CloseButton>
         </PopupHeader>
-        <CalculatorImage src="/calculator.png" alt="Calculator" />
+        <DesmosFrame
+          src="https://www.desmos.com/calculator"
+          title="Desmos Graphing Calculator"
+          allowFullScreen
+        />
       </PopupContainer>
     )}
   </AnimatePresence>
 );
 
-export default CalculatorPopup; 
+export default DesmosPopup; 

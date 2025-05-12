@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 import { FiX, FiEdit3 } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
 
 interface NotepadProps {
   open: boolean;
   onClose: () => void;
+  note: string;
+  setNote: (val: string) => void;
 }
 
 const NotepadContainer = styled(motion.div)`
@@ -58,8 +59,8 @@ const TextArea = styled.textarea`
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 `;
 
-const Notepad = ({ open, onClose }: NotepadProps) => {
-  const [note, setNote] = useState('');
+const Notepad = ({ open, onClose, note, setNote }: NotepadProps) => {
+  console.log('Notepad content:', note);
   return (
     <AnimatePresence>
       {open && (
